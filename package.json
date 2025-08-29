@@ -1,0 +1,10 @@
+{
+  "name": "reart-project",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix reart-backend\" \"npm run dev --prefix reart-frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
