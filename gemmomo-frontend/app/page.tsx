@@ -1,30 +1,42 @@
-'use client';
-
+// app/page.tsx
+import EventCard from '../components/EventCard';
 import styles from './page.module.css';
+import { Event } from '../types/event';
 
-export default function HomePage() {
+export const revalidate = 0; // 매 요청마다 최신 데이터를 받습니다
+
+async function fetchEvents(): Promise<Event[]> {
+  // 1) 동작하는 절대경로로 바꿔보기
+  const res = await fetch('http://localhost:4000/api/events', { cache: 'no-store' });
+
+  console.log('status:', res.status);
+  if (!res.ok) {
+    throw new Error(`이벤트 로드 실패: ${res.status}`);
+  }
+  return res.json();
+}
+
+export default async function HomePage() {
+  let events: Event[] = [];
+
+  try {
+    events = await fetchEvents();
+  } catch (err) {
+    console.error(err);
+    return <p className={styles.error}>이벤트를 불러오지 못했습니다.</p>;
+  }
+
   return (
-      <section className={styles.cardnews}>
-        <ul>
-          <li>
-            
-          </li>
-          <li>
-            
-          </li>
-          <li>
-            
-          </li>
-          <li>
-            
-          </li>
-          <li>
-            
-          </li>
-          <li>
-            
-          </li>
-        </ul>
-      </section>
+    <main className={styles.container}>
+      {events.length === 0 ? (
+        <p>등록된 이벤트가 없습니다.</p>
+      ) : (
+        <div className={styles.grid}>
+          {events.map(evt => (
+            <EventCard key={evt.id} event={evt} />
+          ))}
+        </div>
+      )}
+    </main>
   );
 }
