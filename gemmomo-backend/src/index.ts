@@ -1,8 +1,7 @@
 import express from 'express';
 import * as dotenv from 'dotenv';
 import authRouter from './routes/auth';
-import testRouter from './routes/test';
-import userRouter from './routes/user';
+import userRouter from './routes/users';
 import cors from 'cors';
 
 
@@ -12,8 +11,14 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.get('/', (req, res) => {
+  res.send('백엔드 서버가 정상적으로 작동 중입니다!');
+});
+app.use('/api/auth', (req, res, next) => {
+  console.log('✅ /api/auth 경로 접근됨');
+  next();
+});
 app.use('/api/auth', authRouter);
-app.use('/api/test', testRouter);
 app.use('/api/users', userRouter);
 
 const PORT = process.env.PORT || 4000;

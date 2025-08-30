@@ -1,0 +1,7 @@
+// tsconfig.tsnode.json
+{
+  "extends": "./tsconfig.json",
+  "ts-node": {
+    "files": true
+  }
+}

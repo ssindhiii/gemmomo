@@ -1,0 +1,21 @@
+/* app/page.module.css */
+.main {
+  padding: 2rem;
+  font-family: sans-serif;
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #0070f3;
+  font-weight: bold;
+}
+
+.hero {
+  text-align: center;
+}
