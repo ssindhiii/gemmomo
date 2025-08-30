@@ -1,21 +1,14 @@
-/* app/page.module.css */
-.main {
-  padding: 2rem;
-  font-family: sans-serif;
+.cardnews {
+  padding: 0 20px;
 }
-
-.nav {
+.cardnews ul{
   display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 25px;
 }
-
-.nav a {
-  text-decoration: none;
-  color: #0070f3;
-  font-weight: bold;
-}
-
-.hero {
-  text-align: center;
+.cardnews ul li{
+  aspect-ratio: 300 / 345;
+  background: #ededed;
+  border-radius: 50px;
+  width: calc(20% - 20px);
 }

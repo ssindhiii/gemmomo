@@ -40,17 +40,19 @@ export default function Nav() {
   };
 
   return (
-    <nav className="flex gap-4 p-4 border-b">
-      <Link href="/">홈</Link>
-      {token && <Link href="/users">마이페이지</Link>}
-      {isAdmin && <Link href="/admin">관리자</Link>}
-      {!token ? (
-        <Link href="/login">로그인</Link>
-      ) : (
-        <button onClick={handleLogout} className="text-blue-600 font-bold">
-          로그아웃
-        </button>
-      )}
+    <nav className="nav">
+      <div className="area"><Link className="nav_logo" href="/"><img src="/icon_logo.png" alt="" /></Link></div>
+      <div className="area">
+        {token && <Link href="/users">마이페이지</Link>}
+          {isAdmin && <Link href="/admin">관리자</Link>}
+          {!token ? (
+            <Link href="/login">로그인</Link>
+          ) : (
+            <button onClick={handleLogout} className="text-blue-600 font-bold">
+              로그아웃
+            </button>
+          )}
+      </div>
     </nav>
   );
 }

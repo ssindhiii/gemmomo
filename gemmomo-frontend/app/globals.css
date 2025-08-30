@@ -1,3 +1,68 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	font-weight: 400;
+	word-break: keep-all;
+	color: #231915;
+	font-size: 15px;
+	line-height: 1;
+	letter-spacing: -0.04em;
+  font-family: 'Paperlogy';
+	font-weight: 400;
+}
+
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+input, textarea, button {
+  font-size: inherit;
+  font-family: 'Paperlogy';
+}
+input::placeholder{
+  color: #c4c1c1;
+}
+select{
+  -webkit-appearance: none;  /* Safari, Chrome */
+  -moz-appearance: none;     /* Firefox */
+  appearance: none; 
+  background: #fff url(/assets/img/icon_select_arrow.svg) right 15px center no-repeat !important; 
+}
+
+
+
+
+
+
 body {
   margin: 0;
   font-family: sans-serif;
@@ -6,4 +71,23 @@ a {
   text-decoration: none;
   color: #0070f3;
   font-weight: bold;
+}
+nav.nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 80px;
+}
+nav.nav .area{
+
+}
+.nav_logo{
+  width: 150px;
+  display: inline-flex;
+}
+.nav_logo img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
