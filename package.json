@@ -1,8 +1,8 @@
 {
-  "name": "reart-project",
+  "name": "gemmomo-project",
   "version": "1.0.0",
   "scripts": {
-    "dev": "concurrently \"npm run dev --prefix reart-backend\" \"npm run dev --prefix reart-frontend\""
+    "dev": "concurrently \"npm run dev --prefix gemmomo-backend\" \"npm run dev --prefix gemmomo-frontend\""
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
