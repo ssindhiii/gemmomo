@@ -2,19 +2,17 @@ version: '3.9'
 services:
   frontend:
     platform: linux/arm64
-    build:
-      context: ./gemmomo-frontend
+    image: gemmomo-frontend
     ports:
       - "3000:3000"
     depends_on:
       - backend
     env_file:
-      - ./gemmomo-frontend/.env.local
+      - ./gemmomo-frontend/.env.production
 
   backend:
     platform: linux/arm64
-    build:
-      context: ./gemmomo-backend
+    image: gemmomo-backend
     ports:
       - "4000:4000"
     env_file:
