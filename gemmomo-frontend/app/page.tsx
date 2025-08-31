@@ -4,10 +4,11 @@ import styles from './page.module.css';
 import { Event } from '../types/event';
 
 export const revalidate = 0; // 매 요청마다 최신 데이터를 받습니다
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 async function fetchEvents(): Promise<Event[]> {
   // 1) 동작하는 절대경로로 바꿔보기
-  const res = await fetch('http://localhost:4000/api/events', { cache: 'no-store' });
+  const res = await fetch(`${apiUrl}/api/events`, { cache: 'no-store' });
 
   console.log('status:', res.status);
   if (!res.ok) {
@@ -17,6 +18,7 @@ async function fetchEvents(): Promise<Event[]> {
 }
 
 export default async function HomePage() {
+  console.log('API URL:', process.env.NEXT_PUBLIC_API_URL);
   let events: Event[] = [];
 
   try {

@@ -5,15 +5,19 @@ import { useRouter, useParams } from 'next/navigation';
 import EventForm from '../components/EventForm';
 import { Event } from '../../../../types/event';
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 export default function EventDetailPage() {
   const [event, setEvent] = useState<Event | null>(null);
   const router = useRouter();
   const params = useParams(); // 👈 여기서 params 가져오기
+  
+  
 
   useEffect(() => {
     if (!params?.id) return;
 
-    fetch(`http://localhost:4000/api/events/${params.id}`, { cache: 'no-store' })
+    fetch(`${apiUrl}/api/events/${params.id}`, { cache: 'no-store' })
       .then(res => res.json())
       .then(data => setEvent(data));
   }, [params?.id]);
@@ -22,7 +26,7 @@ export default function EventDetailPage() {
     const confirmed = window.confirm('정말로 이 이벤트를 삭제하시겠습니까?');
     if (!confirmed) return;
 
-    const res = await fetch(`http://localhost:4000/api/events/${params.id}`, {
+    const res = await fetch(`${apiUrl}/api/events/${params.id}`, {
       method: 'DELETE',
     });
 
@@ -41,7 +45,7 @@ export default function EventDetailPage() {
       <h1>이벤트 상세 / 수정</h1>
       <EventForm
         initial={event}
-        onSubmitUrl={`http://localhost:4000/api/events/${params.id}`}
+        onSubmitUrl={`${apiUrl}/api/events/${params.id}`}
         method="PUT"
       />
       <button onClick={handleDelete} style={{ marginTop: '20px', backgroundColor: 'red', color: 'white' }}>

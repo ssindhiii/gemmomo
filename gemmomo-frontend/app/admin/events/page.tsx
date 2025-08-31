@@ -2,9 +2,10 @@ import EventList from './components/EventList';
 import Link from 'next/link';
 
 export const revalidate = 0;
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export default async function AdminEventsPage() {
-  const res = await fetch('http://localhost:4000/api/events', { cache: 'no-store' });
+  const res = await fetch(`${apiUrl}/api/events`, { cache: 'no-store' });
   const events = await res.json();
 
   return (

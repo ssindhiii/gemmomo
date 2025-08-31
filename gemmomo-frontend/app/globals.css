@@ -120,7 +120,7 @@ nav.nav .area.member a img{
 .cardnews ul li{
   aspect-ratio: 300 / 345;
   background: #ededed;
-  border-radius: 50px;
+  border-radius: 30px;
   width: calc(20% - 20px);
   overflow: hidden;
   border: 1px solid gray;

@@ -3,6 +3,7 @@
 import { Event } from '../../../../types/event';
 import { useRouter } from 'next/navigation';
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 interface Props {
   events: Event[];
 }

@@ -3,6 +3,7 @@
 import { Event } from '../types/event';
 import styles from './EventCard.module.css';
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 interface Props {
   event: Event;
 }
