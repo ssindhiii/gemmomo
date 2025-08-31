@@ -1,8 +1,9 @@
-// types/event.ts
 export interface Event {
   id: number;
   title: string;
+  date: string;
   description: string;
-  date: string;       // ISO 문자열로 받습니다
-  created_by: number;
+  location: string;
+  tags: string;
+  image_pdf: string;
 }

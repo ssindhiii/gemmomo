@@ -32,3 +32,4 @@ export const updateUserProfile = async (req: Request, res: Response) => {
     res.status(500).json({ error: '서버 오류' });
   }
 };
+

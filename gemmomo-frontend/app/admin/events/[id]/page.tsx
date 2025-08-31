@@ -1,58 +1,52 @@
-// app/admin/events/[id]/page.tsx
+'use client';
 
-import { notFound } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useRouter, useParams } from 'next/navigation';
+import EventForm from '../components/EventForm';
+import { Event } from '../../../../types/event';
 
-interface Event {
-  id: string;
-  title: string;
-  date: string;
-  location: string;
-  description: string;
-}
+export default function EventDetailPage() {
+  const [event, setEvent] = useState<Event | null>(null);
+  const router = useRouter();
+  const params = useParams(); // 👈 여기서 params 가져오기
 
-interface PageProps {
-  // Next.js 15+ passes params as a Promise
-  params: Promise<{ id: string }>;
-}
+  useEffect(() => {
+    if (!params?.id) return;
 
-export default async function EventDetail({ params }: PageProps) {
-  // await the params API before using
-  const { id } = await params;
+    fetch(`http://localhost:4000/api/events/${params.id}`, { cache: 'no-store' })
+      .then(res => res.json())
+      .then(data => setEvent(data));
+  }, [params?.id]);
 
-  // 백엔드 주소 (환경변수 또는 기본값)
-  const baseUrl = process.env.BACKEND_URL || 'http://localhost:4000';
+  const handleDelete = async () => {
+    const confirmed = window.confirm('정말로 이 이벤트를 삭제하시겠습니까?');
+    if (!confirmed) return;
 
-  // 외부 API 호출 (캐시 방지)
-  const res = await fetch(`${baseUrl}/api/events/${id}`, {
-    cache: 'no-store',
-  });
+    const res = await fetch(`http://localhost:4000/api/events/${params.id}`, {
+      method: 'DELETE',
+    });
 
-  // 404 페이지로 포워딩
-  if (res.status === 404) {
-    notFound();
-  }
+    if (res.ok) {
+      alert('이벤트가 삭제되었습니다.');
+      router.push('/admin/events');
+    } else {
+      alert('삭제에 실패했습니다.');
+    }
+  };
 
-  // 그 외 실패 처리
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`API 요청 실패 [${res.status}]: ${text}`);
-  }
-
-  // 정상 응답 JSON 파싱
-  const eventData: Event = await res.json();
+  if (!event) return <p>이벤트 정보를 불러오는 중...</p>;
 
   return (
-    <main style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
-      <h1 style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>
-        {eventData.title}
-      </h1>
-      <p style={{ color: '#666' }}>
-        {new Date(eventData.date).toLocaleDateString()}
-      </p>
-      <p style={{ fontStyle: 'italic' }}>{eventData.location}</p>
-      <section style={{ marginTop: '1.5rem', lineHeight: 1.6 }}>
-        {eventData.description}
-      </section>
+    <main>
+      <h1>이벤트 상세 / 수정</h1>
+      <EventForm
+        initial={event}
+        onSubmitUrl={`http://localhost:4000/api/events/${params.id}`}
+        method="PUT"
+      />
+      <button onClick={handleDelete} style={{ marginTop: '20px', backgroundColor: 'red', color: 'white' }}>
+        이벤트 삭제
+      </button>
     </main>
   );
 }

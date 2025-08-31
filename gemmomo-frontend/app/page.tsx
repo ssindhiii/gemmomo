@@ -27,15 +27,15 @@ export default async function HomePage() {
   }
 
   return (
-    <main className={styles.container}>
+    <main className="cardnews">
       {events.length === 0 ? (
         <p>등록된 이벤트가 없습니다.</p>
       ) : (
-        <div className={styles.grid}>
+        <ul>
           {events.map(evt => (
             <EventCard key={evt.id} event={evt} />
           ))}
-        </div>
+        </ul>
       )}
     </main>
   );

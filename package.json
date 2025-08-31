@@ -5,9 +5,11 @@
     "dev": "concurrently \"npm run dev --prefix gemmomo-backend\" \"npm run dev --prefix gemmomo-frontend\""
   },
   "devDependencies": {
+    "@types/multer": "^2.0.0",
     "concurrently": "^8.2.2"
   },
   "dependencies": {
-    "@prisma/client": "^6.15.0"
+    "@prisma/client": "^6.15.0",
+    "multer": "^2.0.2"
   }
 }

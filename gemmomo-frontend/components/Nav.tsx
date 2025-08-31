@@ -41,10 +41,12 @@ export default function Nav() {
 
   return (
     <nav className="nav">
-      <div className="area"><Link className="nav_logo" href="/"><img src="/icon_logo.png" alt="" /></Link></div>
-      <div className="area">
-        {token && <Link href="/users">마이페이지</Link>}
-          {isAdmin && <Link href="/admin">관리자</Link>}
+      <div className="area logo"><Link className="nav_logo" href="/"><img src="/icon_logo.png" alt="" /></Link></div>
+      <div className="area member">
+        {token && <Link href="/users">
+          <img src="/icon_mypage.svg" alt="" />
+        </Link>}
+          {isAdmin && <Link href="/admin/events">관리자</Link>}
           {!token ? (
             <Link href="/login">로그인</Link>
           ) : (

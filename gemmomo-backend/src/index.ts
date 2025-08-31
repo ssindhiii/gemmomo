@@ -4,6 +4,7 @@ import authRouter from './routes/auth';
 import userRouter from './routes/users';
 import eventsRouter from './routes/events';
 import cors from 'cors';
+import path from 'path';
 
 
 dotenv.config();
@@ -11,6 +12,9 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+// uploads 폴더를 정적 경로로 노출
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 app.get('/', (req, res) => {
   res.send('백엔드 서버가 정상적으로 작동 중입니다!');

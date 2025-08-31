@@ -26,7 +26,7 @@ a {
   color: inherit;
 }
 
-ul, ol {
+ul, ol, li {
   list-style: none;
 }
 
@@ -90,4 +90,66 @@ nav.nav .area{
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+nav.nav .area.member{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+nav.nav .area.member a img{
+  width: 30px;
+  aspect-ratio: 1/1;
+  padding: 5px;
+}
+
+
+
+
+
+
+
+/* 이벤트카드컴포넌트 */
+.cardnews {
+  padding: 0 20px;
+}
+.cardnews ul{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+.cardnews ul li{
+  aspect-ratio: 300 / 345;
+  background: #ededed;
+  border-radius: 50px;
+  width: calc(20% - 20px);
+  overflow: hidden;
+  border: 1px solid gray;
+  position: relative;
+}
+.cardnews ul li > div.img_area{
+  width: 100%;
+  height: 100%;
+}
+.cardnews ul li > div img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cardnews ul li > div.text_area{
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: transparent;
+}
+.cardnews ul li:hover > div.text_area{
+  background-color: #00000093;
+  color: #fff;
 }
