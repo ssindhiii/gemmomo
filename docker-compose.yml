@@ -1,17 +1,21 @@
-version: '3'
+version: '3.9'
 services:
   frontend:
-    build: ./gemmomo-frontend
+    platform: linux/arm64
+    build:
+      context: ./gemmomo-frontend
     ports:
       - "3000:3000"
     depends_on:
       - backend
     env_file:
-      - ./gemmomo-frontend/.env.local  # ✅ 프론트는 자기 env 파일을 써야 함
+      - ./gemmomo-frontend/.env.local
 
   backend:
-    build: ./gemmomo-backend
+    platform: linux/arm64
+    build:
+      context: ./gemmomo-backend
     ports:
       - "4000:4000"
     env_file:
-      - ./gemmomo-backend/.env         # ✅ 백엔드는 자기 env 파일을 그대로 사용
+      - ./gemmomo-backend/.env

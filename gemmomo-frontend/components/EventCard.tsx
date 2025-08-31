@@ -17,7 +17,7 @@ export default function EventCard({ event }: Props) {
         <div className="img_area">
           {event.image_pdf && (
             <img
-              src={`http://localhost:4000/uploads/${event.image_pdf}`}
+              src={`${apiUrl}/uploads/${event.image_pdf}`}
               alt="이벤트 이미지"
               className={styles.image}
             />

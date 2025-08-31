@@ -25,7 +25,7 @@ export default function UserPage() {
 
     const fetchUser = async () => {
       try {
-        const res = await fetch(`http://localhost:4000/api/users/me`, {
+        const res = await fetch(`${apiUrl}/api/users/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -60,7 +60,7 @@ export default function UserPage() {
     };
 
     try {
-      const res = await fetch(`http://localhost:4000/api/users/me`, {
+      const res = await fetch(`${apiUrl}/api/users/me`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

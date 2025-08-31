@@ -18,7 +18,7 @@ export default function EventList({ events }: Props) {
           {/* 이미지가 있을 경우에만 렌더링 */}
           {evt.image_pdf && (
             <img
-              src={`http://localhost:4000/uploads/${evt.image_pdf}`}
+              src={`${apiUrl}/uploads/${evt.image_pdf}`}
               alt="이벤트 이미지"
               style={{ width: '200px', height: 'auto', marginBottom: '0.5rem', borderRadius: '8px' }}
             />
